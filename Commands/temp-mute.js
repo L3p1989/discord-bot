@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const ms = require("ms");
-
+// !tempmute <@user> <time; ex: 10s = 10 seconds>
 module.exports.run = async (bot, message, args) => {
   // call mentioned user or arguments index 0 with toMute
   let toMute = message.guild.member(

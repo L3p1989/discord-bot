@@ -4,7 +4,7 @@ const ms = require("ms");
 
 // parse warnings.json into JS object called with `warns`
 let warns = JSON.parse(fs.readFileSync("./warnings.json"));
-
+// !warn <@user> <reason>
 module.exports.run = async (bot, message, args) => {
   // if sender doesn't have permission to manage roles reply with text
   if (!message.member.hasPermission("MANAGE_ROLES"))

@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-
+// !serverinfo
 module.exports.run = async (bot, message, args) => {
   // call server profile image with sIcon
   let sIcon = message.guild.iconURL;

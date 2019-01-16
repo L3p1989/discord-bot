@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const superAgent = require("superagent");
-
+// !dog
 module.exports.run = async (bot, message, args) => {
   // wait for superAgent to get .json and call body with body
   let { body } = await superAgent.get(`https://random.dog/woof.json`);

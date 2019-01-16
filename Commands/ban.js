@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-
+// !ban <@user> <reason>
 module.exports.run = async (bot, message, args) => {
   // call mentioned user or arguments index 0 with bUser
   let bUser = message.guild.member(

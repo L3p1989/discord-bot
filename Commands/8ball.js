@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-
+// !8ball <question>
 module.exports.run = async (bot, message, args) => {
   // if args index 2 doesn't exist
   if (!args[2]) return message.reply("Please ask a full question!");

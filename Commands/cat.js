@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const superAgent = require("superagent");
-
+// !cat
 module.exports.run = async (bot, message, args) => {
   // wait for superAgent to get url and call body with body
   let { body } = await superAgent.get(`http://aws.random.cat/meow`);

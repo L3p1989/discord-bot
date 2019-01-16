@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-
+// !botinfo
 module.exports.run = async (bot, message, args) => {
   // call bot profile picture with `bIcon`
   let bIcon = bot.user.defaultAvatarURL;

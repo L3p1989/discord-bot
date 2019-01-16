@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-
+// !kick <@user> <reason>
 module.exports.run = async (bot, message, args) => {
   // call mentioned user or arguments index 0 with rUser
   let kUser = message.guild.member(

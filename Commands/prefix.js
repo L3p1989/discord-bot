@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-
+// !prefix <desired prefix>
 module.exports.run = async (bot, message, args) => {
   // if message sender doesn't have permission to manage guild reply with text
   if (!message.member.hasPermission("MANAGE_GUILD"))

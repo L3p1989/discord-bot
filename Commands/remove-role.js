@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-
+// !removerole <@user> <role>
 module.exports.run = async (bot, message, args) => {
   // if member doesn't have permission to manage roles reply with text
   if (!message.member.hasPermission("MANAGE_ROLES"))
