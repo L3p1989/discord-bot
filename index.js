@@ -106,7 +106,7 @@ bot.on("message", async message => {
     };
   }
 
-  //
+  // call prefixes indexed by sent message guild ID prefixes by prefix
   let prefix = prefixes[message.guild.id].prefixes;
 
   // set message to array split by spacing
