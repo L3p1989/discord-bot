@@ -135,5 +135,5 @@ bot.on("message", async message => {
   }
 });
 
-// login bot using token in bot-config.json
+// login bot using token in botconfig.json
 bot.login(botConfig.token);
