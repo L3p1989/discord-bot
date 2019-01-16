@@ -47,9 +47,11 @@ bot.on("ready", async () => {
 
 // on new member join
 bot.on("guildMemberAdd", async member => {
+  // console log member ID with text
   console.log(`${member.id} joined the server.`);
-
+  // call welcome channel with welcomeChannel
   let welcomeChannel = member.guild.channels.find(`name`, "welcome");
+  // send text to welcomeChannel
   welcomeChannel.send(
     `Welcome to the server ${member}! Please take a look at #rules for further instruction :cheeeese:`
   );
@@ -57,17 +59,21 @@ bot.on("guildMemberAdd", async member => {
 
 // on member leave
 bot.on("guildMemberRemove", async member => {
+  // console log member ID with text
   console.log(`${member.id} left the server.`);
-
+  // call staff channel with leaveChannel
   let leaveChannel = member.guild.channels.find(`name`, "staff");
+  // send text to staff notifying leave
   leaveChannel.send(`${member} left the server.`);
 });
 
 // on channel creation
 bot.on("channelCreate", async channel => {
+  // console log channel name with text
   console.log(`${channel.name} has been created.`);
-
+  // call general channel using sChannel
   let sChannel = channel.guild.channels.find(`name`, "general");
+  // send text to sChannel
   sChannel.send(`${channel} has been created!`);
 });
 
