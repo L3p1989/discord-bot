@@ -9,7 +9,12 @@ module.exports.run = async (bot, message, args) => {
     .setTitle("Cat")
     .setImage(body.file);
 
-  message.channel.send(catEmbed);
+  let catChannel = message.guild.channels.find(`name`, "photos-screenshots");
+
+  if (!catChannel)
+    return message.reply("I couldn't find a channel for the cats");
+
+  catChannel.send(catEmbed);
 };
 
 module.exports.help = {
