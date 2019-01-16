@@ -76,7 +76,7 @@ bot.on("message", async message => {
   // let the Member role be called by mRole
   let mRole = message.guild.roles.find(`name`, "Member");
 
-  // if user already has role reply with text
+  // if user already has role do nothing
   if (message.member.roles.has(mRole.id)) return;
 
   // if message was received in role-assignment give mRole role
