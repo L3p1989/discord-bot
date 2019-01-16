@@ -4,6 +4,8 @@ const botConfig = require("./botconfig.json");
 const Discord = require("discord.js");
 // import fs called with fs
 const fs = require("fs");
+// import coins.json called with coins
+const coins = require("./coins.json");
 
 // create new Discord Client called with bot
 const bot = new Discord.Client({ disableEveryone: true });
@@ -23,7 +25,7 @@ fs.readdir("./commands/", (err, files) => {
     console.log("couldn't find 'Commands'");
     return;
   }
-
+  // for each file in the jsFile Array
   jsFile.forEach((f, i) => {
     // call `./Commands/${f}` with props
     let props = require(`./Commands/${f}`);
@@ -105,7 +107,41 @@ bot.on("message", async message => {
       prefixes: botConfig.prefix
     };
   }
-
+  // if message sender does not have coins
+  if (!coins[message.author.id]) {
+    // create new object
+    coins[message.author.id] = {
+      coins: 0
+    };
+  }
+  // pull a random number between 1-15 call with coinAmt
+  let coinAmt = Math.floor(Math.random() * 15) + 1;
+  // pull a random number between 1-15 call with baseAmt
+  let baseAmt = Math.floor(Math.random() * 15) + 1;
+  // if coinAmt is equal to baseAmt
+  if (coinAmt === baseAmt) {
+    // add coins to message senders coins
+    coins[message.author.id] = {
+      coins: coins[message.author.id].coins + coinAmt
+    };
+    // update coins.json
+    fs.writeFile("./coins.json", JSON.stringify(coins), err => {
+      // if error console log error
+      if (err) console.log(err);
+    });
+    // call new RichEmbed with coinEmbed
+    let coinEmbed = new Discord.RichEmbed()
+      // set author to users nickname
+      .setAuthor(message.member.nickname)
+      // set spine color to blue
+      .setColor("#0000FF")
+      // add new field named ":moneybag:" and shows coins added
+      .addField(":moneybag:", `${coinAmt} coins added!`);
+    // send coinEmbed to message channel and then delete after 5s
+    message.channel.send(coinEmbed).then(msg => {
+      msg.delete(5000);
+    });
+  }
   // call prefixes indexed by sent message guild ID prefixes by prefix
   let prefix = prefixes[message.guild.id].prefixes;
 
