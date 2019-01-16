@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
       "You don't have sufficient permissions to use this command."
     );
   // if no arg is given/arg is help reply with text
-  if (!args[0] || args[0 == "help"])
+  if (!args[Number] || args[0 == "help"])
     return message.reply("Usage: !prefix <desired prefix here>");
   // parse JSON in prefixes and call with prefixes
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
