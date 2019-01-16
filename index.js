@@ -71,10 +71,20 @@ bot.on("guildMemberRemove", async member => {
 bot.on("channelCreate", async channel => {
   // console log channel name with text
   console.log(`${channel.name} has been created.`);
-  // call general channel using sChannel
-  let sChannel = channel.guild.channels.find(`name`, "general");
+  // call staff channel using sChannel
+  let sChannel = channel.guild.channels.find(`name`, "staff");
   // send text to sChannel
   sChannel.send(`${channel} has been created!`);
+});
+
+//on channel deletion
+bot.on("channelDelete", async channel => {
+  //console log channel name with text
+  console.log(`${channel.name} has been deleted.`);
+  // call staff channel using sChannel
+  let sChannel = channel.guild.channels.find(`name`, "staff");
+  // send text to sChannel
+  sChannel.send(`${channel.name} has been deleted!`);
 });
 
 // on "message"
