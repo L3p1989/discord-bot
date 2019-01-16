@@ -47,12 +47,20 @@ bot.on("ready", async () => {
 
 // on new member join
 bot.on("guildMemberAdd", async member => {
-  console.log(`${member.id} joined the server`);
+  console.log(`${member.id} joined the server.`);
 
-  let welcomeChannel = member.guild.channels.find(`name`, "welcome_leave");
+  let welcomeChannel = member.guild.channels.find(`name`, "welcome");
   welcomeChannel.send(
     `Welcome to the server ${member}! Please take a look at #rules for further instruction :cheeeese:`
   );
+});
+
+// on member leave
+bot.on("guildMemberRemove", async member => {
+  console.log(`${member.id} left the server.`);
+
+  let leaveChannel = member.guild.channels.find(`name`, "staff");
+  leaveChannel.send(`${member} left the server.`);
 });
 
 // on "message"
