@@ -13,7 +13,7 @@
 
 ## Before you run!
 
-- create a new file in the root directory named `botconfig.json`
+- create a new file in the root directory named `bot-config.json`
   - structure it as so:
 
 ```json

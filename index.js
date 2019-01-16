@@ -1,5 +1,5 @@
-// import botconfig.json called with botconfig
-const botconfig = require("./botconfig.json");
+// import bot-config.json called with botConfig
+const botConfig = require("./bot-config.json");
 // import discord.js called with Discord
 const Discord = require("discord.js");
 // import fs called with fs
@@ -53,8 +53,8 @@ bot.on("message", async message => {
   // if DM do nothing
   if (message.channel.type === "dm") return;
 
-  // set prefix to prefix in botconfig.json
-  let prefix = botconfig.prefix;
+  // set prefix to prefix in bot-config.json
+  let prefix = botConfig.prefix;
 
   // set message to array split by spacing
   let messageArray = message.content.split(" ");
@@ -93,5 +93,5 @@ bot.on("message", async message => {
   }
 });
 
-// login bot using token in botconfig.json
-bot.login(botconfig.token);
+// login bot using token in bot-config.json
+bot.login(botConfig.token);
