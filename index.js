@@ -79,12 +79,16 @@ bot.on("message", async message => {
   // if user already has role do nothing
   if (message.member.roles.has(mRole.id)) return;
 
-  // if message was received in role-assignment give mRole role
+  // if message was received in role-assignment assign mRole
   if (message.channel === rAssignment) {
     message.member.addRole(mRole);
     message.guild.channels
       .find(`name`, "general")
-      .send(`${message.member} has accepted membership! Welcome to MHG!`);
+      .send(
+        `${message.member} has accepted membership! Welcome to ${
+          message.guild.name
+        }!`
+      );
   }
 });
 
