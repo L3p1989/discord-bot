@@ -9,29 +9,59 @@ module.exports.run = async (bot, message, args) => {
     );
   // parse JSON in prefixes and call with prefixes
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
-  // if no arg is given/arg is help reply with text
-  if (!args[0] || args[0 == "help"])
-    return message.reply(
-      `Usage: ${prefixes[message.guild.id]}prefix <desired prefix here>`
-    );
-  // set prefixes by guild ID using arg
-  prefixes[message.guild.id] = {
-    prefixes: args[0]
-  };
-  // update file with new arg
-  fs.writeFile("./prefixes.json", JSON.stringify(prefixes), err => {
-    if (err) console.log(err);
+  // array of prefix symbols
+  let pSymbols = [
+    "~",
+    "`",
+    "!",
+    "$",
+    "%",
+    "^",
+    "&",
+    "*",
+    "|",
+    "_",
+    "-",
+    "=",
+    "+",
+    "?",
+    ",",
+    "<",
+    ".",
+    ">"
+  ];
+  // for each pSymbol
+  pSymbols.forEach(pSymbol => {
+    // if args[0] equals pSymbol
+    if (args[0] === pSymbol) {
+      // set prefixes by guild ID using arg
+      prefixes[message.guild.id] = {
+        prefixes: args[0]
+      };
+      // update file with new arg
+      fs.writeFile("./prefixes.json", JSON.stringify(prefixes), err => {
+        if (err) console.log(err);
+      });
+      // new RichEmbed called with sEmbed
+      let sEmbed = new Discord.RichEmbed()
+        // set spine color to green
+        .setColor("#009933")
+        // set title to "Prefix Set!"
+        .setTitle("Prefix Set!")
+        // set Description to confirmation text
+        .setDescription(`Set to ${args[0]}`);
+      // send sEmbed to channel sent from
+      message.channel.send(sEmbed);
+    }
   });
-  // new RichEmbed called with sEmbed
-  let sEmbed = new Discord.RichEmbed()
-    // set spine color to green
-    .setColor("#009933")
-    // set title to "Prefix Set!"
-    .setTitle("Prefix Set!")
-    // set Description to confirmation text
-    .setDescription(`Set to ${args[0]}`);
-  // send sEmbed to channel sent from
-  message.channel.send(sEmbed);
+  // if no arg or arg is "help"
+  if (!args[0] || args[0] === "help")
+    // reply with message
+    return message.reply(
+      `Usage: ${
+        prefixes[message.guild.id].prefixes
+      }prefix <desired prefix here>`
+    );
 };
 
 module.exports.help = {
