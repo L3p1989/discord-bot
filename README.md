@@ -7,7 +7,7 @@
 
 ## Before you run!
 
-- create a new file named `botconfig.json`
+- create a new file in the root directory named `botconfig.json`
   - structure it as so:
 
 ```json
@@ -16,3 +16,5 @@
   "prefix": "!"
 }
 ```
+
+## I hope this breakdown helps!
