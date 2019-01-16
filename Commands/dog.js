@@ -2,9 +2,9 @@ const Discord = require("discord.js");
 const superAgent = require("superagent");
 
 module.exports.run = async (bot, message, args) => {
-  // wait for superAgent to get .json and call with body
+  // wait for superAgent to get .json and call body with body
   let { body } = await superAgent.get(`https://random.dog/woof.json`);
-  // call new Discord Richembed with dogEmbed
+  // call new Discord RichEmbed with dogEmbed
   let dogEmbed = new Discord.RichEmbed()
     // set color to white
     .setColor("#ffffff")
