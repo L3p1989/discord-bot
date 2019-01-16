@@ -1,5 +1,5 @@
 // import bot-config.json called with botConfig
-const botConfig = require("./bot-config.json");
+const botConfig = require("./botconfig.json");
 // import discord.js called with Discord
 const Discord = require("discord.js");
 // import fs called with fs
