@@ -15,6 +15,7 @@ fs.readdir("./commands/", (err, files) => {
   // if there's an error console log it
   if (err) console.log(err);
 
+  // filter files for .js and call with jsFile
   let jsFile = files.filter(f => f.split(".").pop() === "js");
 
   if (jsFile.length <= 0) {
