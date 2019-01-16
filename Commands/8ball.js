@@ -7,19 +7,19 @@ module.exports.run = async (bot, message, args) => {
   let replies = ["Yes.", "No.", "I don't know.", "Ask again later!"];
   // randomize a result based on index length of replies
   let result = Math.floor(Math.random() * replies.length);
-  //
+  // start at args index 0 and join array together with spaces call with question
   let question = args.slice(0).join(" ");
-  //
+  // new Discord RichEmbed
   let ballEmbed = new Discord.RichEmbed()
-    //
+    // set author to message sender
     .setAuthor(message.author.tag)
-    //
+    // set spine color to orange
     .setColor("#FF9900")
-    //
+    // add field "Question" with question
     .addField("Question", question)
-    //
+    // add field "Answer" with replies index position result
     .addField("Answer", replies[result]);
-  //
+  // send ballEmbed to channel message was sent
   message.channel.send(ballEmbed);
 };
 
