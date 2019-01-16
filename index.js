@@ -6,20 +6,22 @@ const Discord = require("discord.js");
 const fs = require("fs");
 // import coins.json called with coins
 const coins = require("./coins.json");
-
+// call xp.json with xp
+const xp = require("./xp.json");
+// call botconfig purple with botPurple
+const botPurple = botConfig.purple;
 // create new Discord Client called with bot
 const bot = new Discord.Client({ disableEveryone: true });
-
 // call new Discord Collection with bot.commands
 bot.commands = new Discord.Collection();
 
-fs.readdir("./commands/", (err, files) => {
+// read directory 'Commands'
+fs.readdir("./Commands/", (err, files) => {
   // if there's an error console log it
   if (err) console.log(err);
-
   // filter files for .js and call with jsFile
   let jsFile = files.filter(f => f.split(".").pop() === "js");
-
+  // if jsFile length is equal to/less than 0
   if (jsFile.length <= 0) {
     // if jsFile is empty console log text
     console.log("couldn't find 'Commands'");
@@ -29,10 +31,8 @@ fs.readdir("./commands/", (err, files) => {
   jsFile.forEach((f, i) => {
     // call `./Commands/${f}` with props
     let props = require(`./Commands/${f}`);
-
     // console log text
     console.log(`${f} loaded!`);
-
     // adds command name to props
     bot.commands.set(props.help.name, props);
   });
@@ -93,13 +93,10 @@ bot.on("channelDelete", async channel => {
 bot.on("message", async message => {
   // if author is bot do nothing
   if (message.author.bot) return;
-
   // if DM do nothing
   if (message.channel.type === "dm") return;
-
   // parse JSON in prefixes.json and call with prefixes
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
-
   // if no prefixes exist for guild
   if (!prefixes[message.guild.id]) {
     prefixes[message.guild.id] = {
@@ -144,31 +141,22 @@ bot.on("message", async message => {
   }
   // call prefixes indexed by sent message guild ID prefixes by prefix
   let prefix = prefixes[message.guild.id].prefixes;
-
   // set message to array split by spacing
   let messageArray = message.content.split(" ");
-
   // set command to messageArray index 0
   let cmd = messageArray[0];
-
   // set args to anything starting from messageArray index 1
   let args = messageArray.slice(1);
-
   // call bot commands with commandFile
   let commandFile = bot.commands.get(cmd.slice(prefix.length));
-
   // if commandFile exists run
   if (commandFile) commandFile.run(bot, message, args);
-
   // let role-assignment channel be called by rAssignment
   let rAssignment = message.guild.channels.find(`name`, "role-assignment");
-
   // let the Member role be called by mRole
   let mRole = message.guild.roles.find(`name`, "Member");
-
   // if user already has role do nothing
   if (message.member.roles.has(mRole.id)) return;
-
   // if message was received in role-assignment assign mRole
   if (message.channel === rAssignment) {
     message.member.addRole(mRole);
