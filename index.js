@@ -95,8 +95,19 @@ bot.on("message", async message => {
   // if DM do nothing
   if (message.channel.type === "dm") return;
 
-  // set prefix to prefix in bot-config.json
-  let prefix = botConfig.prefix;
+  // parse JSON in prefixes.json and call with prefixes
+  let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
+
+  // if no prefixes exist for guild
+  if (!prefixes[message.guild.id]) {
+    prefixes[message.guild.id] = {
+      // set prefix to prefix in botconfig.json
+      prefixes: botConfig.prefix
+    };
+  }
+
+  //
+  let prefix = prefixes[message.guild.id].prefixes;
 
   // set message to array split by spacing
   let messageArray = message.content.split(" ");
