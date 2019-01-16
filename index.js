@@ -45,6 +45,16 @@ bot.on("ready", async () => {
   bot.user.setActivity("iBot", { type: "WATCHING" });
 });
 
+// on new member join
+bot.on("guildMemberAdd", async member => {
+  console.log(`${member.id} joined the server`);
+
+  let welcomeChannel = member.guild.channels.find(`name`, "welcome_leave");
+  welcomeChannel.send(
+    `Welcome to the server ${member}! Please take a look at #rules for further instruction :cheeeese:`
+  );
+});
+
 // on "message"
 bot.on("message", async message => {
   // if author is bot do nothing
