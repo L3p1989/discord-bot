@@ -30,7 +30,7 @@ fs.readdir("./commands/", (err, files) => {
     // console log text
     console.log(`${f} loaded!`);
 
-    //
+    // adds command name to props
     bot.commands.set(props.help.name, props);
   });
 });
