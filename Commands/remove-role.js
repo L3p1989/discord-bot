@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-  if (!message.member.hasPermissions("MANAGE_ROLES"))
+  if (!message.member.hasPermission("MANAGE_ROLES"))
     return message.reply(
       "you do not have sufficient permissions to use this command, sorry!"
     );
