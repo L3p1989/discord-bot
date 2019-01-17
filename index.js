@@ -200,27 +200,29 @@ bot.on("message", async message => {
   let commandFile = bot.commands.get(cmd.slice(prefix.length));
   // if commandFile exists run
   if (commandFile) commandFile.run(bot, message, args);
-  //
+  // if message doesn't start with a prefix do nothing
   if (!message.content.startsWith(prefix)) return;
-  //
+  // if command has same sender id
   if (coolDown.has(message.author.id)) {
-    //
+    // delete message
     message.delete();
-    //
+    // reply with text
     return message
       .reply("You have to wait 5 seconds between commands.")
       .then(msg => {
         msg.delete(5000);
       });
   }
-  //
+  // if sender doesn't have Admin permission
   if (!message.member.hasPermission("ADMINISTRATOR")) {
+    // add sender ID to coolDown
     coolDown.add(message.author.id);
   }
-  //
+  // set Timeout
   setTimeout(() => {
+    // delete coolDown message with senders ID
     coolDown.delete(message.author.id);
-  }, cdSeconds * 1000);
+  }, cdSeconds * 1000); //for 5s
   // let role-assignment channel be called by rAssignment
   let rAssignment = message.guild.channels.find(`name`, "role-assignment");
   // let the Member role be called by mRole
