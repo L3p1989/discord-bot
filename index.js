@@ -214,9 +214,9 @@ bot.on("message", async message => {
       });
   }
   //
-  // if (!message.member.hasPermission("ADMINISTRATOR")) {
-  coolDown.add(message.author.id);
-  //}
+  if (!message.member.hasPermission("ADMINISTRATOR")) {
+    coolDown.add(message.author.id);
+  }
   //
   setTimeout(() => {
     coolDown.delete(message.author.id);
