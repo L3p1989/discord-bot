@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 // !botinfo
 module.exports.run = async (bot, message, args) => {
   // call bot profile picture with `bIcon`
-  let bIcon = bot.user.defaultAvatarURL;
+  let bIcon = bot.user.avatarURL;
 
   // create new Discord RichEmbed called with botEmbed
   let botEmbed = new Discord.RichEmbed()
