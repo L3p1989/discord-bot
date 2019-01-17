@@ -175,10 +175,12 @@ bot.on("message", async message => {
       .addField("New Level", curLvl + 1)
       // sets footer to "Congrats!"
       .setFooter("Congrats!");
-    // send lvlUp to sender channel
-    message.channel.send(lvlUp);
+    // send lvlUp to sender channel then delete after 5s
+    message.channel.send(lvlUp).then(msg => {
+      msg.delete(5000);
+    });
   }
-  //
+  // update file 'xp.json'
   fs.writeFile("./xp.json", JSON.stringify(xp), e => {
     if (e) console.log(e);
   });
