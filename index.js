@@ -141,8 +141,9 @@ bot.on("message", async message => {
   }
   // add random number between 7-15 call it with xpAdd
   let xpAdd = Math.floor(Math.random() * 7) + 8;
-  //
+  // if sender has no xp
   if (!xp[message.author.id]) {
+    // create JS object
     xp[message.author.id] = {
       xp: 0,
       level: 1
