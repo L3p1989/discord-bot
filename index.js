@@ -139,6 +139,48 @@ bot.on("message", async message => {
       msg.delete(5000);
     });
   }
+  // add random number between 7-15 call it with xpAdd
+  let xpAdd = Math.floor(Math.random() * 7) + 8;
+  //
+  if (!xp[message.author.id]) {
+    xp[message.author.id] = {
+      xp: 0,
+      level: 1
+    };
+  }
+  // take sender's level and multiply it by 300 then call that number with nxtLvl
+  let nxtLvl = xp[message.author.id].level * 300;
+  //
+  let curLvl = xp[message.author.id].level;
+  //
+  let curXp = xp[message.author.id].xp;
+  // take sender's xp and add xpAdd
+  xp[message.author.id].xp = curXp + xpAdd;
+  // if nxtLvl is less than or equal to curXP
+  if (nxtLvl <= curXp) {
+    // add 1 to message senders level
+    xp[message.author.id].level = curLvl + 1;
+    // call new RichEmbed with lvlUp
+    let lvlUp = new Discord.RichEmbed()
+      // set title to "Level Up!"
+      .setTitle("Level Up!")
+      // set color to purple
+      .setColor(botPurple)
+      // set thumbnail to message senders avatar
+      .setThumbnail(message.member.user.avatarURL)
+      // add field named "User" with sender's nickname
+      .addField("User", message.member.nickname)
+      // adds field "New Level" that shows new level
+      .addField("New Level", curLvl + 1)
+      // sets footer to "Congrats!"
+      .setFooter("Congrats!");
+    // send lvlUp to sender channel
+    message.channel.send(lvlUp);
+  }
+  //
+  fs.writeFile("./xp.json", JSON.stringify(xp), e => {
+    if (e) console.log(e);
+  });
   // call prefixes indexed by sent message guild ID prefixes by prefix
   let prefix = prefixes[message.guild.id].prefixes;
   // set message to array split by spacing
