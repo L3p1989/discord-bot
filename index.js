@@ -14,6 +14,10 @@ const botPurple = botConfig.purple;
 const bot = new Discord.Client({ disableEveryone: true });
 // call new Discord Collection with bot.commands
 bot.commands = new Discord.Collection();
+// call new Set with coolDown
+let coolDown = new Set();
+// call 5 with cdSeconds
+let cdSeconds = 5;
 
 // read directory 'Commands'
 fs.readdir("./Commands/", (err, files) => {
@@ -196,6 +200,27 @@ bot.on("message", async message => {
   let commandFile = bot.commands.get(cmd.slice(prefix.length));
   // if commandFile exists run
   if (commandFile) commandFile.run(bot, message, args);
+  //
+  if (!message.content.startsWith(prefix)) return;
+  //
+  if (coolDown.has(message.author.id)) {
+    //
+    message.delete();
+    //
+    return message
+      .reply("You have to wait 5 seconds between commands.")
+      .then(msg => {
+        msg.delete(5000);
+      });
+  }
+  //
+  // if (!message.member.hasPermission("ADMINISTRATOR")) {
+  coolDown.add(message.author.id);
+  //}
+  //
+  setTimeout(() => {
+    coolDown.delete(message.author.id);
+  }, cdSeconds * 1000);
   // let role-assignment channel be called by rAssignment
   let rAssignment = message.guild.channels.find(`name`, "role-assignment");
   // let the Member role be called by mRole
