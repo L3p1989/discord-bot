@@ -36,7 +36,7 @@ module.exports.run = async (bot, message, args) => {
   };
   // send message to sent channel
   message.channel.send(
-    `${message.author} has given ${pUser} ${args[1]} coins!`
+    `${message.member.displayName} has given ${pUser} ${args[1]} coins!`
   );
   // write changes to coins.json
   fs.writeFile("./coins.json", JSON.stringify(coins), err => {

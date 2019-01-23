@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
   // call new RichEmbed with coinEmbed
   let coinEmbed = new Discord.RichEmbed()
     // set author to message sender nickname
-    .setAuthor(message.member.nickname)
+    .setAuthor(message.member.displayName)
     // set spine color to green
     .setColor("#00FF00")
     // add new field named ":moneybag:" that shows uCoins

@@ -40,7 +40,7 @@ module.exports.run = async (bot, message, args) => {
     // set description to "Warns"
     .setDescription("Warns")
     // set Author to message sender
-    .setAuthor(message.author.username)
+    .setAuthor(message.member.displayName)
     // set spine color to orange
     .setColor("#ff6600")
     // add new field called "Warned User" with wUser ID

@@ -35,7 +35,7 @@ module.exports.run = async (bot, message, args) => {
     // add field "Kicked By" that displays "<@(Author Name)> with ID: (Author ID)"
     .addField(
       "Kicked By",
-      `<@${message.author.id}> with ID: ${message.author.id}`
+      `<@${message.author.displayName}> with ID: ${message.author.id}`
     )
     // add field "Kicked In" that displays channel command was used in
     .addField("Kicked In", message.channel)

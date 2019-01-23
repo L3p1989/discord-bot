@@ -48,7 +48,7 @@ bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
 
   // set activity to "Watching iBot"
-  bot.user.setActivity("iBot", { type: "WATCHING" });
+  bot.user.setActivity("Mountain High Gaming", { type: "WATCHING" });
 });
 
 // on new member join
@@ -133,7 +133,7 @@ bot.on("message", async message => {
     // call new RichEmbed with coinEmbed
     let coinEmbed = new Discord.RichEmbed()
       // set author to users nickname
-      .setAuthor(message.member.nickname)
+      .setAuthor(message.member.displayName)
       // set spine color to blue
       .setColor("#0000FF")
       // add new field named ":moneybag:" and shows coins added
@@ -174,7 +174,7 @@ bot.on("message", async message => {
       // set thumbnail to message senders avatar
       .setThumbnail(message.member.user.avatarURL)
       // add field named "User" with sender's nickname
-      .addField("User", message.member.nickname)
+      .addField("User", message.member.displayName)
       // adds field "New Level" that shows new level
       .addField("New Level", curLvl + 1)
       // sets footer to "Congrats!"
