@@ -56,7 +56,9 @@ bot.on("guildMemberAdd", async member => {
   // console log member ID with text
   console.log(`${member.id} joined the server.`);
   // call welcome channel with welcomeChannel
-  let welcomeChannel = member.guild.channels.find(`name`, "welcome");
+  let welcomeChannel = member.guild.channels.find(
+    val => val.name === "welcome"
+  );
   // send text to welcomeChannel
   welcomeChannel.send(
     `Welcome to the server ${member}! Please take a look at #rules for further instruction :cheeeese:`
@@ -68,7 +70,7 @@ bot.on("guildMemberRemove", async member => {
   // console log member ID with text
   console.log(`${member.id} left the server.`);
   // call staff channel with leaveChannel
-  let leaveChannel = member.guild.channels.find(`name`, "staff");
+  let leaveChannel = member.guild.channels.find(val => val.name === "staff");
   // send text to staff notifying leave
   leaveChannel.send(`${member} left the server.`);
 });
@@ -78,7 +80,7 @@ bot.on("channelCreate", async channel => {
   // console log channel name with text
   console.log(`${channel.name} has been created.`);
   // call staff channel using sChannel
-  let sChannel = channel.guild.channels.find(`name`, "staff");
+  let sChannel = channel.guild.channels.find(val => val.name === "staff");
   // send text to sChannel
   sChannel.send(`${channel} has been created!`);
 });
@@ -88,7 +90,7 @@ bot.on("channelDelete", async channel => {
   //console log channel name with text
   console.log(`${channel.name} has been deleted.`);
   // call staff channel using sChannel
-  let sChannel = channel.guild.channels.find(`name`, "staff");
+  let sChannel = channel.guild.channels.find(val => val.name === "staff");
   // send text to sChannel
   sChannel.send(`${channel.name} has been deleted!`);
 });
@@ -224,16 +226,18 @@ bot.on("message", async message => {
     coolDown.delete(message.author.id);
   }, cdSeconds * 1000); //for 5s
   // let role-assignment channel be called by rAssignment
-  let rAssignment = message.guild.channels.find(`name`, "role-assignment");
+  let rAssignment = message.guild.channels.find(
+    val => val.name === "role-assignment"
+  );
   // let the Member role be called by mRole
-  let mRole = message.guild.roles.find(`name`, "Member");
+  let mRole = message.guild.roles.find(val => val.name === "Member");
   // if user already has role do nothing
   if (message.member.roles.has(mRole.id)) return;
   // if message was received in role-assignment assign mRole
   if (message.channel === rAssignment) {
     message.member.addRole(mRole);
     message.guild.channels
-      .find(`name`, "general")
+      .find(val => val.name === "general")
       .send(
         `${message.member} has accepted membership! Welcome to ${
           message.guild.name

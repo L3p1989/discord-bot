@@ -13,7 +13,9 @@ module.exports.run = async (bot, message, args) => {
     // set image to img in body.file
     .setImage(body.file);
   // call #photos-screenshots with catChannel
-  let catChannel = message.guild.channels.find(`name`, "photos-screenshots");
+  let catChannel = message.guild.channels.find(
+    val => val.name === "photos-screenshots"
+  );
   // if no catChannel reply with text
   if (!catChannel)
     return message.reply("I couldn't find a channel for the cats");

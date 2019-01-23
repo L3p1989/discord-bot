@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Reason", kReason);
 
   // call "staff" channel by kickChannel
-  let kickChannel = message.guild.channels.find(`name`, "staff");
+  let kickChannel = message.guild.channels.find(val => val.name === "staff");
 
   // if kickChannel is missing reply with text
   if (!kickChannel)

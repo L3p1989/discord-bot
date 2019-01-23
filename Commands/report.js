@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Reason", reason);
 
   // call staff channel finding by name, YOU COULD ALSO USE `name`, "reports" IF USING A "REPORTS"
-  let reportsChannel = message.guild.channels.find("name", "staff");
+  let reportsChannel = message.guild.channels.find(val => val.name === "staff");
 
   // if there is no reportsChannel reply with text
   if (!reportsChannel)

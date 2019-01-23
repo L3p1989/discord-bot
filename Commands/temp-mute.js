@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
     return errors.noPerms(message, "MUTE_MEMBERS");
 
   // call muted role with muteRole
-  let muteRole = message.guild.roles.find(`name`, "muted");
+  let muteRole = message.guild.roles.find(val => val.name === "muted");
 
   // if no muteRole
   if (!muteRole) {

@@ -52,7 +52,7 @@ module.exports.run = async (bot, message, args) => {
     // add new field called "Reason" with reason arg
     .addField("Reason", reason);
   // call staff channel with warnChannel
-  let warnChannel = message.guild.channels.find(`name`, "staff");
+  let warnChannel = message.guild.channels.find(val => val.name === "staff");
   // if no warnChannel reply with text
   if (!warnChannel) return message.reply("I couldn't find the warn channel!");
   // send warnEmbed to warnChannel
@@ -60,7 +60,7 @@ module.exports.run = async (bot, message, args) => {
   // if number of warns is equal to 2
   if (warns[wUser.id].warns == 2) {
     // call muted role with muteRole
-    let muteRole = message.guild.roles.find(`name`, "muted");
+    let muteRole = message.guild.roles.find(val => val.name === "muted");
     // if no muteRole reply with text
     if (!muteRole) return message.reply("that role no longer exists");
     // call "10s" with muteTime

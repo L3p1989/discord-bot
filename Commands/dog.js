@@ -13,7 +13,9 @@ module.exports.run = async (bot, message, args) => {
     // set image to url img
     .setImage(body.url);
   // call photos-screenshots with dogChannel
-  let dogChannel = message.guild.channels.find(`name`, "photos-screenshots");
+  let dogChannel = message.guild.channels.find(
+    val => val.name === "photos-screenshots"
+  );
   // if no dogChannel reply with message
   if (!dogChannel)
     return message.reply("I couldn't find a channel for the dogs");

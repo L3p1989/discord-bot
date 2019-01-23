@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Reason", bReason);
 
   // call "staff" channel by banChannel
-  let banChannel = message.guild.channels.find(`name`, "staff");
+  let banChannel = message.guild.channels.find(val => val.name === "staff");
 
   // if banChannel is missing reply with text
   if (!banChannel) return message.channel.send("Can't find incidents channel.");

@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
   if (!role) return message.reply("specify a role!");
 
   // call specified role with gRole
-  let gRole = message.guild.roles.find(`name`, role);
+  let gRole = message.guild.roles.find(val => val.name === role);
 
   // if role doesn't exist reply with text
   if (!gRole) return message.reply("I couldn't find that role.");
