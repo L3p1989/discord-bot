@@ -1,11 +1,10 @@
 const Discord = require("discord.js");
+const errors = require("../utils/errors");
 // !addrole <@user> <role>
 module.exports.run = async (bot, message, args) => {
   // if member doesn't have permission to manage roles reply with text
   if (!message.member.hasPermission("MANAGE_ROLES"))
-    return message.reply(
-      "you do not have sufficient permissions to use this command, sorry!"
-    );
+    return errors.noPerms(message, "MANAGE_ROLES");
 
   //call mentioned user or arguments index 0 with rMember
   let rMember =
