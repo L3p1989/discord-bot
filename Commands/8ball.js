@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
   // new Discord RichEmbed
   let ballEmbed = new Discord.RichEmbed()
     // set author to message sender
-    .setAuthor(message.author.tag)
+    .setAuthor(message.message.displayName)
     // set spine color to orange
     .setColor("#FF9900")
     // add field "Question" with question
