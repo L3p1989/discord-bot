@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
     .addField(":moneybag:", uCoins);
   //send coinEmbed to sender channel for 5s
   message.channel.send(coinEmbed).then(msg => {
-    msg.delete(5000);
+    msg.delete(10000);
   });
 };
 

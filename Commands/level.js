@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
     .setFooter(`${lvlDiff} XP until level up`, message.member.user.avatarURL);
   // send lvlEmbed to sender's channel and then deletes it after 5s
   message.channel.send(lvlEmbed).then(msg => {
-    msg.delete(5000);
+    msg.delete(10000);
   });
 };
 

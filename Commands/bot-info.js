@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
     // add field "Created On" with time it was created
     .addField("Created On", bot.user.createdAt);
 
-  return message.channel.send(botEmbed);
+  return message.channel.send(botEmbed).then(m => m.delete(15000));
 };
 
 module.exports.help = {

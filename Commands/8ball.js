@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
     // add field "Answer" with replies index position result
     .addField("Answer", replies[result]);
   // send ballEmbed to channel message was sent
-  message.channel.send(ballEmbed);
+  message.channel.send(ballEmbed).then(m => m.delete(10000));
 };
 
 module.exports.help = {

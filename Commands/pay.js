@@ -35,9 +35,9 @@ module.exports.run = async (bot, message, args) => {
     coins: pCoins + parseInt(args[1])
   };
   // send message to sent channel
-  message.channel.send(
-    `${message.member.displayName} has given ${pUser} ${args[1]} coins!`
-  );
+  message.channel
+    .send(`${message.member.displayName} has given ${pUser} ${args[1]} coins!`)
+    .then(m => m.delete(10000));
   // write changes to coins.json
   fs.writeFile("./coins.json", JSON.stringify(coins), err => {
     // console log any errors

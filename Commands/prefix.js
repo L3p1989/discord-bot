@@ -50,7 +50,7 @@ module.exports.run = async (bot, message, args) => {
         // set Description to confirmation text
         .setDescription(`Set to ${args[0]}`);
       // send sEmbed to channel sent from
-      message.channel.send(sEmbed);
+      message.channel.send(sEmbed).then(m => m.delete(10000));
     }
   });
   // if no arg or arg is "help"
