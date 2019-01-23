@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const ms = require("ms");
+const errors = require("../utils/errors");
 // !tempmute <@user> <time; ex: 10s = 10 seconds>
 module.exports.run = async (bot, message, args) => {
   // call mentioned user or arguments index 0 with toMute
@@ -11,8 +12,11 @@ module.exports.run = async (bot, message, args) => {
   if (!toMute) return message.reply("Couldn't find user.");
 
   // if toMute has the manage messages permission reply with text
-  if (toMute.hasPermission("MANAGE_MESSAGES"))
+  if (toMute.hasPermission("MUTE_MEMBERS"))
     return message.reply("That user is not able to be muted at this time");
+
+  if (!toMute.hasPermission("MUTE_MEMBERS"))
+    return errors.noPerms(message, "MUTE_MEMBERS");
 
   // call muted role with muteRole
   let muteRole = message.guild.roles.find(`name`, "muted");

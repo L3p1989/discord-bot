@@ -1,11 +1,10 @@
 const Discord = require("discord.js");
+const errors = require("../utils/errors");
 // !clear <amount>
 module.exports.run = async (bot, message, args) => {
   // if message sender doesn't have permissions reply with message
   if (!message.member.hasPermission("MANAGE_MESSAGES"))
-    return message.reply(
-      "you do not have sufficient permissions to use that command."
-    );
+    return errors.noPerms(message, "MANAGE_MESSAGES");
   // if no arg reply with text
   if (!args[0]) return message.reply("you need to specify a number to delete");
   // delete specified number of messages in channel then send message then delete message after 5s

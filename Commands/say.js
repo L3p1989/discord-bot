@@ -1,11 +1,10 @@
 const Discord = require("discord.js");
+const errors = require("../utils/errors");
 // !say <text to say>
 module.exports.run = async (bot, message, args) => {
   // if message sender doesn't have permission to manage messages
   if (!message.member.hasPermission("MANAGE_MESSAGES"))
-    return message.reply(
-      "you don't have sufficient permissions to use this command."
-    );
+    return errors.noPerms(message, "MANAGE_MESSAGES");
   // join args with spaces and call with botMessage
   let botMessage = args.join(" ");
   // delete message with command

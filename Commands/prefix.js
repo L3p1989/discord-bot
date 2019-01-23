@@ -1,12 +1,11 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const errors = require("../utils/errors");
 // !prefix <desired prefix>
 module.exports.run = async (bot, message, args) => {
   // if message sender doesn't have permission to manage guild reply with text
   if (!message.member.hasPermission("MANAGE_GUILD"))
-    return message.reply(
-      "You don't have sufficient permissions to use this command."
-    );
+    return errors.noPerms(message, "MANAGE_GUILD");
   // parse JSON in prefixes and call with prefixes
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
   // array of prefix symbols

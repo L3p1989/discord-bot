@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const ms = require("ms");
+const errors = require("../utils/errors");
 
 // parse warnings.json into JS object called with `warns`
 let warns = JSON.parse(fs.readFileSync("./warnings.json"));
@@ -8,9 +9,7 @@ let warns = JSON.parse(fs.readFileSync("./warnings.json"));
 module.exports.run = async (bot, message, args) => {
   // if sender doesn't have permission to manage roles reply with text
   if (!message.member.hasPermission("MANAGE_ROLES"))
-    return message.reply(
-      "you do not have sufficient permissions for this command."
-    );
+    return errors.noPerms(message, "MANAGE_ROLES");
   // call mentioned user/arg index 0 with wUser
   let wUser =
     message.guild.member(message.mentions.users.first()) ||
