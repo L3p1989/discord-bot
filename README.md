@@ -16,20 +16,4 @@
 
 **"\*": channels used in code**
 
-## Before you run!
-
-- create a new file in the root directory named `botconfig.json`
-  - structure it as so:
-
-```json
-{
-  "token": "PUT YOUR BOT TOKEN HERE",
-  "prefix": "!",
-  "red": "#b70000",
-  "orange": "#ff6a00",
-  "green": "#00ff26",
-  "purple": "#d604cf"
-}
-```
-
 ## I hope this breakdown helps!
