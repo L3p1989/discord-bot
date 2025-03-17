@@ -1,7 +1,8 @@
 module.exports = {
     roles: {
-        member: 'Seraph', // Changed from 'Member' to 'Seraph'
+        member: 'Seraph',
         mh: 'Monster Hunter',
         ffxiv: 'FFXIV'
-    }
+    },
+    commandPrefix: '!'
 };
