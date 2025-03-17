@@ -1,6 +1,6 @@
 module.exports = {
     roles: {
-        member: 'Member',
+        member: 'Seraph', // Changed from 'Member' to 'Seraph'
         mh: 'Monster Hunter',
         ffxiv: 'FFXIV'
     }
