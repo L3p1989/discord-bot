@@ -36,11 +36,6 @@ async function handleCommands(message, client) {
     if (message.content.includes('!FFXIV')) {
         await handleFFXIVCommand(message, client, member);
     }
-
-    // Handle the !members command
-    if (message.content.startsWith('!members')) {
-        await handleMembersCommand(message);
-    }
 }
 
 module.exports = { handleCommands };

@@ -1,4 +1,5 @@
 const { PermissionsBitField } = require('discord.js');
+const { handleError } = require('../utilities/error');
 
 async function handleMemberCommand(message, client, member, memberRole) {
     try {
@@ -37,8 +38,7 @@ async function handleMemberCommand(message, client, member, memberRole) {
             message.reply(`Sorry ${member.displayName}, I don't have permission to manage roles or nicknames.`);
         }
     } catch (error) {
-        console.error('Error fetching bot member, changing nickname, or adding role:', error);
-        message.reply(`An error occurred while trying to assign the role or change the nickname: ${error.message}`);
+        handleError(error, message, 'Error fetching bot member, changing nickname, or adding role');
     }
 }
 

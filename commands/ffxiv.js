@@ -1,4 +1,5 @@
 const { PermissionsBitField } = require('discord.js');
+const { handleError } = require('../utilities/error');
 
 async function handleFFXIVCommand(message, client, member) {
     const role = message.guild.roles.cache.find(role => role.name === 'FFXIV'); // Find the "FFXIV" role
@@ -23,8 +24,7 @@ async function handleFFXIVCommand(message, client, member) {
             message.reply(`Sorry ${member.displayName}, I don't have permission to manage roles.`);
         }
     } catch (error) {
-        console.error('Error fetching bot member or adding role:', error);
-        message.reply(`An error occurred while trying to assign the role: ${error.message}`);
+        handleError(error, message, 'Error fetching bot member or adding role');
     }
 }
 
