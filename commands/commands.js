@@ -22,7 +22,7 @@ async function handleCommands(message, client) {
         if (message.content.includes('!member')) {
             await handleMemberCommand(message, client, member, memberRole);
         } else {
-            message.reply(`You need to have the Member role before using other commands. Please use the !member command first.`);
+            message.reply(`Only members can use commands.`);
         }
         return;
     }
