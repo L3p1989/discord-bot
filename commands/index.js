@@ -1,6 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-
 // Import the necessary functions from the 'fs' and 'path' modules
 const fs = require('fs');
 const path = require('path');

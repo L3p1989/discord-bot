@@ -1,4 +1,3 @@
-const { PermissionsBitField } = require('discord.js');
 // Import the necessary functions and configuration settings
 const { PermissionsBitField } = require('discord.js');
 const { handleError } = require('../utilities/error');
