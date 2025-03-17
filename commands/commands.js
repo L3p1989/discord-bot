@@ -1,6 +1,7 @@
 const { handleError } = require('../utilities/error');
-const { roles } = require('../utilities/config');
+const { roles, commandPrefix } = require('../utilities/config');
 const commands = require('./index');
+const logger = require('../utilities/logger');
 
 async function handleCommands(message, client) {
     const member = message.guild.members.cache.get(message.author.id); // Get the member who sent the message
@@ -19,7 +20,7 @@ async function handleCommands(message, client) {
     // Check if the user has the "Seraph" role
     if (!member.roles.cache.has(memberRole.id)) {
         // If the user does not have the "Seraph" role, they can only use the !member command
-        if (message.content.includes('!member')) {
+        if (message.content.startsWith(`${commandPrefix}member`)) {
             await commands.member.handleMemberCommand(message, client, member, memberRole);
         } else {
             message.reply(`Only members can request game roles.`);
@@ -28,11 +29,13 @@ async function handleCommands(message, client) {
     }
 
     // Handle other commands
-    if (message.content.includes('!MH')) {
+    if (message.content.startsWith(`${commandPrefix}MH`)) {
         await commands.mh.handleMHCommand(message, client, member);
-    } else if (message.content.includes('!FFXIV')) {
+    } else if (message.content.startsWith(`${commandPrefix}FFXIV`)) {
         await commands.ffxiv.handleFFXIVCommand(message, client, member);
     }
+
+    logger.info(`Command executed by ${member.displayName}: ${message.content}`);
 }
 
 module.exports = { handleCommands };
