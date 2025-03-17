@@ -22,7 +22,7 @@ async function handleCommands(message, client) {
         if (message.content.includes('!member')) {
             await handleMemberCommand(message, client, member, memberRole);
         } else {
-            message.reply(`Only members can use commands.`);
+            message.reply(`Only members can request game roles.`);
         }
         return;
     }
