@@ -11,6 +11,7 @@
   "description": "My test discord bot",
   "dependencies": {
     "discord.js": "^14.18.0",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "winston": "^3.17.0"
   }
 }

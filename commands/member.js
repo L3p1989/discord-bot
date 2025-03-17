@@ -1,15 +1,21 @@
 const { PermissionsBitField } = require('discord.js');
+// Import the necessary functions and configuration settings
+const { PermissionsBitField } = require('discord.js');
 const { handleError } = require('../utilities/error');
 const { roles } = require('../utilities/config');
 const logger = require('../utilities/logger');
 
+// Define an asynchronous function to handle the !member command
 async function handleMemberCommand(message, client, member, memberRole) {
     try {
-        const botMember = await message.guild.members.fetch(client.user.id); // Fetch the bot's member object
+        // Fetch the bot's member object
+        const botMember = await message.guild.members.fetch(client.user.id);
         console.log(`Bot permissions: ${botMember.permissions.toArray()}`);
         console.log(`Bot highest role position: ${botMember.roles.highest.position}`);
         console.log(`Role to assign position: ${memberRole.position}`);
+        // Check if the bot has the necessary permissions
         if (botMember.permissions.has(PermissionsBitField.Flags.ManageRoles) && botMember.permissions.has(PermissionsBitField.Flags.ManageNicknames)) {
+            // Check if the bot's highest role is higher than the member role
             if (botMember.roles.highest.comparePositionTo(memberRole) > 0) {
                 // Check if the user is the server owner
                 if (message.guild.ownerId === message.author.id) {
@@ -40,10 +46,13 @@ async function handleMemberCommand(message, client, member, memberRole) {
             message.reply(`Sorry ${member.displayName}, I don't have permission to manage roles or nicknames.`);
         }
     } catch (error) {
+        // Handle any errors that occur
         handleError(error, message, 'Error fetching bot member, changing nickname, or adding role');
     }
 
+    // Log the command execution
     logger.info(`Member command executed by ${member.displayName}`);
 }
 
+// Export the handleMemberCommand function for use in other files
 module.exports = { handleMemberCommand };
