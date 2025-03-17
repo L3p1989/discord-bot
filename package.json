@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "My test discord bot",
   "dependencies": {
-    "discord.js": "^14.18.0"
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7"
   }
 }
