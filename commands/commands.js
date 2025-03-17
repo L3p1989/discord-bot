@@ -9,16 +9,16 @@ async function handleCommands(message, client) {
         return;
     }
 
-    // Find the "Member" role
+    // Find the "Seraph" role
     const memberRole = message.guild.roles.cache.find(role => role.name === roles.member);
     if (!memberRole) {
         message.reply(`The role '${roles.member}' does not exist. Please contact an administrator.`);
         return;
     }
 
-    // Check if the user has the "Member" role
+    // Check if the user has the "Seraph" role
     if (!member.roles.cache.has(memberRole.id)) {
-        // If the user does not have the "Member" role, they can only use the !member command
+        // If the user does not have the "Seraph" role, they can only use the !member command
         if (message.content.includes('!member')) {
             await commands.member.handleMemberCommand(message, client, member, memberRole);
         } else {
