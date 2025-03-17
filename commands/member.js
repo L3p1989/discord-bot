@@ -1,6 +1,7 @@
 const { PermissionsBitField } = require('discord.js');
 const { handleError } = require('../utilities/error');
 const { roles } = require('../utilities/config');
+const logger = require('../utilities/logger');
 
 async function handleMemberCommand(message, client, member, memberRole) {
     try {
@@ -41,6 +42,8 @@ async function handleMemberCommand(message, client, member, memberRole) {
     } catch (error) {
         handleError(error, message, 'Error fetching bot member, changing nickname, or adding role');
     }
+
+    logger.info(`Member command executed by ${member.displayName}`);
 }
 
 module.exports = { handleMemberCommand };
